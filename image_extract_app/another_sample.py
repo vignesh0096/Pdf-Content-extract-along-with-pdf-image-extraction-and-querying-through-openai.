@@ -8,7 +8,7 @@ from paddleocr import PaddleOCR
 import numpy as np
 
 
-openai.api_key = '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'
+openai.api_key = ''
 
 
 def get_completion(prompt, model="gpt-3.5-turbo"):

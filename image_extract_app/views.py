@@ -8,6 +8,7 @@ from rest_framework import status
 import base64
 from .another_sample import *
 import concurrent.futures
+import os
 
 
 class UploadPdf(CreateAPIView):
@@ -25,6 +26,7 @@ class UploadPdf(CreateAPIView):
                     if serializers.is_valid():
                         path_instance = serializers.save()
                         executor.submit(pdf_text_extract, path_instance.pdf.path,path_instance.pdf.id)
+                        os.remove(path_instance.pdf.path)
             return Response({'status_code': status.HTTP_200_OK,
                              'status': 'success',
                              })
