@@ -25,7 +25,7 @@ class UploadPdf(CreateAPIView):
                     serializers = UploadPdfSerializer(data=data)
                     if serializers.is_valid():
                         path_instance = serializers.save()
-                        executor.submit(pdf_text_extract, path_instance.pdf.path,path_instance.pdf.id)
+                        executor.submit(pdf_text_extract, path_instance.pdf.path,path_instance.id)
                         os.remove(path_instance.pdf.path)
             return Response({'status_code': status.HTTP_200_OK,
                              'status': 'success',
