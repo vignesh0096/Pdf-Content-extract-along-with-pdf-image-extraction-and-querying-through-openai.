@@ -60,9 +60,3 @@ class Openai(CreateAPIView):
             return Response({'status_code': status.HTTP_400_BAD_REQUEST,
                              'status': 'failure',
                              'message': str(e)})
-
-
-
-
-
-
