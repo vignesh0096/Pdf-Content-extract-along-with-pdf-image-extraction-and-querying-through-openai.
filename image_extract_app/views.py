@@ -6,7 +6,7 @@ from .sample import *
 from rest_framework.response import Response
 from rest_framework import status
 import base64
-from .another_sample import *
+from .openai import *
 import concurrent.futures
 import os
 
@@ -52,6 +52,7 @@ class Openai(CreateAPIView):
                         path_instance = serializers.save()
                         result = executor.submit(get_text, path_instance.pdf.path)
                         output.append(result.result())
+                        os.remove(path_instance.pdf.path)
             return Response({'status_code': status.HTTP_200_OK,
                              'status': 'success',
                              'result':output})
